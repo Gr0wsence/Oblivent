@@ -2,7 +2,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import Navbar from '../components/Navbar';
+import ServiceCard from '../components/ServiceCard';
+import ContactForm from '../components/ContactForm';
+import { Monitor, Megaphone, Video, Palette, Star, ArrowRight, Play, Users, Target, Award, Zap } from 'lucide-react';
 
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -72,6 +75,33 @@ export default function Home() {
     }
   ];
 
+  const services = [
+    {
+      icon: Monitor,
+      title: 'Website Design',
+      description: 'Custom websites that convert visitors into customers.',
+      features: ['Responsive Design', 'SEO Optimization', 'Fast Loading']
+    },
+    {
+      icon: Megaphone,
+      title: 'Social Media Ads',
+      description: 'Strategic campaigns that drive engagement and growth.',
+      features: ['Ad Management', 'Content Creation', 'Analytics']
+    },
+    {
+      icon: Video,
+      title: 'Video Editing',
+      description: 'Professional video content that captivates audiences.',
+      features: ['Post-Production', 'Motion Graphics', 'Color Grading']
+    },
+    {
+      icon: Palette,
+      title: 'Branding',
+      description: 'Complete brand identity solutions that stand out.',
+      features: ['Logo Design', 'Brand Guidelines', 'Marketing Materials']
+    }
+  ];
+
   // Typewriter effect
   useEffect(() => {
     const currentText = typewriterTexts[currentTextIndex];
@@ -108,56 +138,16 @@ export default function Home() {
     : portfolioItems.filter(item => item.category === activeFilter);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="bg-black text-white min-h-screen">
+      {/* Navbar */}
+      <Navbar />
+
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent"></div>
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute bg-white/10 rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 4 + 1}px`,
-              height: `${Math.random() * 4 + 1}px`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${Math.random() * 3 + 2}s`
-            }}
-          />
-        ))}
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-bounce"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-bounce" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-bounce" style={{animationDelay: '4s'}}></div>
       </div>
-
-      {/* Sticky Navbar */}
-      <nav className="sticky top-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Oblivent
-              </span>
-            </div>
-            
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                {['Home', 'About', 'Services', 'Portfolio', 'Blog', 'Contact', 'Legal'].map((item) => (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                  >
-                    {item}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-2 rounded-full font-medium transition-all transform hover:scale-105">
-              Get Free Quote
-            </button>
-          </div>
-        </div>
-      </nav>
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
@@ -193,55 +183,31 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Our <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Services</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              We offer comprehensive digital solutions to elevate your business
-            </p>
+            <p className="text-xl text-gray-300">Comprehensive solutions to elevate your brand</p>
           </div>
-
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                title: 'Website Design',
-                icon: '🎨',
-                description: 'Beautiful, responsive websites that convert visitors into customers',
-                features: ['Responsive Design', 'SEO Optimized', 'Fast Loading']
-              },
-              {
-                title: 'Social Media Ads',
-                icon: '📱',
-                description: 'Targeted campaigns that reach your ideal customers',
-                features: ['Facebook Ads', 'Instagram Ads', 'Google Ads']
-              },
-              {
-                title: 'Video Editing',
-                icon: '🎬',
-                description: 'Professional video content that engages and converts',
-                features: ['Motion Graphics', 'Color Grading', '4K Quality']
-              },
-              {
-                title: 'Branding',
-                icon: '✨',
-                description: 'Complete brand identity that stands out from competition',
-                features: ['Logo Design', 'Brand Guidelines', 'Marketing Materials']
-              }
-            ].map((service, index) => (
-              <div
-                key={index}
-                className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20"
-              >
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
-                  {service.icon}
+            {services.map((service, index) => (
+              <div key={index} className="group relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-500/30 transition-all duration-300 hover:transform hover:scale-105 hover:-translate-y-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-pink-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                <div className="relative z-10">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-purple-500/25 transition-all duration-300">
+                    <service.icon className="w-8 h-8 text-white" />
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
+                  <p className="text-gray-300 mb-4 text-sm">{service.description}</p>
+                  
+                  <ul className="space-y-1 text-xs">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="text-gray-400 flex items-center">
+                        <span className="w-1 h-1 bg-purple-500 rounded-full mr-2" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-                <p className="text-gray-300 mb-4">{service.description}</p>
-                <ul className="space-y-1">
-                  {service.features.map((feature, i) => (
-                    <li key={i} className="text-sm text-gray-400 flex items-center">
-                      <span className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2"></span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>
@@ -249,29 +215,29 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/5">
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Why <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Choose Us?</span>
+              Why <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Choose Us</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: '⚡', title: 'Lightning Fast', description: 'Quick turnaround times without compromising quality' },
-              { icon: '🎯', title: 'Results Driven', description: 'We focus on delivering measurable business results' },
-              { icon: '💎', title: 'Premium Quality', description: 'High-end designs and development standards' },
-              { icon: '🔧', title: '24/7 Support', description: 'Round the clock customer support and maintenance' },
-              { icon: '📈', title: 'Growth Focused', description: 'Strategies designed to scale your business' },
-              { icon: '🏆', title: 'Award Winning', description: 'Recognized excellence in digital marketing' }
+              { icon: Users, title: 'Expert Team', description: '10+ years of combined experience in digital marketing and design' },
+              { icon: Target, title: 'Results Driven', description: 'We focus on metrics that matter - conversions, engagement, and ROI' },
+              { icon: Award, title: 'Quality Assurance', description: 'Rigorous testing and quality control for every project we deliver' },
+              { icon: Zap, title: 'Fast Delivery', description: 'Quick turnaround times without compromising on quality' },
+              { icon: Monitor, title: 'Latest Technology', description: 'We use cutting-edge tools and frameworks for optimal performance' },
+              { icon: ArrowRight, title: '24/7 Support', description: 'Round-the-clock support and maintenance for your peace of mind' }
             ].map((item, index) => (
-              <div key={index} className="flex items-start space-x-4">
-                <div className="text-3xl">{item.icon}</div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-300">{item.description}</p>
+              <div key={index} className="text-center group">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-purple-500/25 transition-all duration-300">
+                  <item.icon className="w-8 h-8 text-white" />
                 </div>
+                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-gray-300">{item.description}</p>
               </div>
             ))}
           </div>
@@ -305,18 +271,15 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPortfolio.map((item) => (
-              <div
-                key={item.id}
-                className="group relative overflow-hidden rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
-              >
-                <div className="aspect-w-16 aspect-h-9 bg-gradient-to-br from-purple-500 to-pink-500 p-8 flex items-center justify-center">
-                  <span className="text-white text-2xl font-bold">{item.title}</span>
+              <div key={item.id} className="group relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-purple-500/30 transition-all duration-300">
+                <div className="aspect-video bg-gradient-to-br from-purple-600/20 to-pink-600/20 flex items-center justify-center">
+                  <Play className="w-12 h-12 text-white/70 group-hover:text-white transition-colors" />
                 </div>
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <button className="bg-white text-black px-6 py-2 rounded-full font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform">
-                    View Project
-                  </button>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                  <p className="text-gray-400 capitalize">{item.category}</p>
                 </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             ))}
           </div>
@@ -324,42 +287,37 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/5">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-16">
-            What Our <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Clients Say</span>
-          </h2>
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Client <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Testimonials</span>
+            </h2>
+          </div>
 
-          <div className="relative">
-            <div className="bg-white/10 rounded-xl p-8 backdrop-blur-sm">
-              <div className="flex justify-center mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-yellow-400 text-2xl">⭐</span>
-                ))}
-              </div>
-              
-              <p className="text-xl text-gray-300 mb-6 italic">
-                "{testimonials[currentTestimonial].text}"
-              </p>
-              
-              <div className="flex items-center justify-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold">
-                  {testimonials[currentTestimonial].name.charAt(0)}
-                </div>
-                <div>
-                  <p className="font-bold text-white">{testimonials[currentTestimonial].name}</p>
-                  <p className="text-gray-400">{testimonials[currentTestimonial].company}</p>
-                </div>
-              </div>
+          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 text-center">
+            <div className="flex justify-center mb-4">
+              {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
+                <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
+              ))}
             </div>
-
-            <div className="flex justify-center mt-6 space-x-2">
+            
+            <p className="text-xl text-gray-300 mb-6 italic">
+              "{testimonials[currentTestimonial].text}"
+            </p>
+            
+            <div>
+              <p className="font-bold text-white">{testimonials[currentTestimonial].name}</p>
+              <p className="text-gray-400">{testimonials[currentTestimonial].company}</p>
+            </div>
+            
+            <div className="flex justify-center space-x-2 mt-8">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    currentTestimonial === index ? 'bg-purple-400' : 'bg-white/20'
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    currentTestimonial === index ? 'bg-purple-500' : 'bg-white/20'
                   }`}
                 />
               ))}
@@ -379,16 +337,16 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
-              <article key={index} className="bg-white/5 rounded-xl overflow-hidden hover:bg-white/10 transition-all transform hover:scale-105">
-                <div className="h-48 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                  <span className="text-white text-lg font-bold">Blog Image</span>
+              <article key={index} className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-purple-500/30 transition-all duration-300">
+                <div className="aspect-video bg-gradient-to-br from-purple-600/20 to-pink-600/20 flex items-center justify-center">
+                  <Play className="w-8 h-8 text-white/70" />
                 </div>
                 <div className="p-6">
                   <p className="text-purple-400 text-sm mb-2">{post.date}</p>
                   <h3 className="text-xl font-bold text-white mb-3">{post.title}</h3>
                   <p className="text-gray-300 mb-4">{post.excerpt}</p>
-                  <button className="text-purple-400 hover:text-purple-300 font-medium">
-                    Read More →
+                  <button className="text-purple-400 hover:text-purple-300 font-medium flex items-center">
+                    Read More <ArrowRight className="w-4 h-4 ml-1" />
                   </button>
                 </div>
               </article>
@@ -398,44 +356,42 @@ export default function Home() {
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/5">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Stay <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Updated</span>
-          </h2>
-          <p className="text-xl text-gray-300 mb-8">
-            Get the latest digital marketing tips and insights delivered to your inbox
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-6 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
-            />
-            <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-full font-medium hover:from-purple-700 hover:to-pink-700 transition-all">
-              Subscribe
-            </button>
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-2xl p-12 text-center border border-white/10">
+            <h2 className="text-3xl font-bold text-white mb-4">Stay Updated</h2>
+            <p className="text-gray-300 mb-8">Get the latest digital marketing tips and trends delivered to your inbox.</p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none"
+              />
+              <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-medium transition-all">
+                Subscribe
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-black/20 py-16 px-4 sm:px-6 lg:px-8" id="contact">
+      <footer className="bg-black/50 border-t border-white/10 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="md:col-span-2">
+            <div>
               <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
                 Oblivent
               </h3>
-              <p className="text-gray-300 mb-6 max-w-md">
-                Your trusted partner for digital transformation. We create stunning digital experiences that drive results.
+              <p className="text-gray-300 mb-4">
+                Transforming businesses through innovative digital solutions and creative excellence.
               </p>
               <div className="flex space-x-4">
-                {['📘', '📷', '🐦', '💼'].map((icon, index) => (
-                  <button key={index} className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-all">
-                    {icon}
-                  </button>
+                {['Twitter', 'LinkedIn', 'Instagram', 'Facebook'].map((social) => (
+                  <a key={social} href="#" className="text-gray-400 hover:text-white transition-colors">
+                    {social}
+                  </a>
                 ))}
               </div>
             </div>
@@ -447,6 +403,19 @@ export default function Home() {
                   <li key={link}>
                     <a href={`#${link.toLowerCase()}`} className="text-gray-300 hover:text-white transition-colors">
                       {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-bold text-white mb-4">Services</h4>
+              <ul className="space-y-2">
+                {['Web Design', 'Digital Marketing', 'Branding', 'Video Production', 'SEO', 'Consulting'].map((service) => (
+                  <li key={service}>
+                    <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                      {service}
                     </a>
                   </li>
                 ))}
