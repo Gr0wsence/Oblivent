@@ -11,7 +11,10 @@
   "description": "",
   "dependencies": {
     "@headlessui/react": "^2.2.7",
+    "@next/font": "^14.2.15",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
-    "lucide-react": "^0.539.0"
+    "lucide-react": "^0.539.0",
+    "next-seo": "^6.8.0"
   }
 }
